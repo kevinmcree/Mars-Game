@@ -7,6 +7,7 @@ public class greenHouse : MonoBehaviour {
 	public float oxygen;
 	public float food;
 	public float manpower;
+	public float materials;
 	private gameManager gameController;
 	
 	// Use this for initialization
@@ -22,7 +23,7 @@ public class greenHouse : MonoBehaviour {
 		gameController.addWater(water);
 		gameController.addOxygen(oxygen);
 		gameController.addFood(food);
-
+		gameController.addMaterials(materials);
 		
 		
 	}

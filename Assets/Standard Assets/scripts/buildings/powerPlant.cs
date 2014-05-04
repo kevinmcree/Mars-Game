@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class powerPlant : MonoBehaviour {
+	public float materials;
 	public float power;
 	private gameManager gameController;
 	
@@ -15,6 +16,7 @@ public class powerPlant : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		gameController.addPower(power);
+		gameController.addMaterials(materials);
 	
 	}
 }
