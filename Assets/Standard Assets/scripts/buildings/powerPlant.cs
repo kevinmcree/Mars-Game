@@ -1,0 +1,18 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class powerPlant : abstractBuilding {
+
+	public powerPlant(){
+		power = .01f;
+	}
+
+	// Use this for initialization
+	void Start () {
+	}
+
+	
+	// Update is called once per frame
+	void Update () {	
+	}
+}
