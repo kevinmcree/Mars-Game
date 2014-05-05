@@ -19,14 +19,7 @@ public class abstractBuilding : MonoBehaviour {
 	private gameManager gameController;
 
 	//Determines if building is actively producing resources
-	public bool isActive{ get { return isactive; } }
-
-	private bool isactive = true;
-
-	//Sets if building is actively producing resources
-	public void setActive(bool active) {
-		isactive = active;
-	}
+	public bool isActive = true;
 
 	// Use this for initialization
 	protected virtual void Start() {
