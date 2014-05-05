@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class gameManager : MonoBehaviour {
-	public float power;
-	public float water;
-	public float oxygen;
-	public float food;
-	public float population;
-	public float deathRate;
-	public float materials;
 
+	public Dictionary<ResourceType, float> resourcePool = new Dictionary<ResourceType, float>();
+	Dictionary<ResourceType, GUIText> resourceTexts = new Dictionary<ResourceType, GUIText>();
+	
+	public float deathRate = -.01f;
 	public GUIText powerText;
 	public GUIText waterText;
 	public GUIText oxygenText;
@@ -22,93 +21,51 @@ public class gameManager : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-		updatePower ();
-		updateWater ();
-		updateOxygen ();	
-		updateFood ();
-		updatePopulation ();
-		updateMaterials ();
+	void Start() {
+		resourcePool[ResourceType.Food] = 200;
+		resourcePool[ResourceType.Materials] = 200;
+		resourcePool[ResourceType.Oxygen] = 200;
+		resourcePool[ResourceType.Population] = 5;
+		resourcePool[ResourceType.Power] = 200;
+		resourcePool[ResourceType.Water] = 200;
+
+		resourceTexts[ResourceType.Food] = foodText;
+		resourceTexts[ResourceType.Materials] = materialsText;
+		resourceTexts[ResourceType.Oxygen] = oxygenText;
+		resourceTexts[ResourceType.Population] = populationText;
+		resourceTexts[ResourceType.Power] = powerText;
+		resourceTexts[ResourceType.Water] = waterText;
+
+		foreach (ResourceType type in (ResourceType[])Enum.GetValues(typeof(ResourceType))) {
+			updateResource(type);
+		}
+
 		greenHouseText.text = "Greenhouse";
 		powerPlantText.text = "Powerplant";
 		quartersText.text = "Quarters";
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(water < 0){ water = 0;}
-		if(power < 0){ power = 0;}
-		if(oxygen < 0){ oxygen = 0;}
-		if(food < 0){ food = 0;}
-		if(population < 0){ population = 0;}
-		if(materials < 0){ materials = 0;}
+	void Update() {
+
+		/*
 		if(water == 0 || food == 0 || oxygen == 0){
 			population += deathRate;
 			updatePopulation();
 		}
-	}
-
-
-	//these statements are all called by other functions to update the values held in the controller
-	public void addPower (float newPowerValue)
-	{
-		power += newPowerValue;
-		updatePower ();
-	}
-	void updatePower ()
-	{
-		powerText.text = "Power: " + power.ToString ("0");
-	}
-
-	public void addWater (float newWaterValue)
-	{
-		water += newWaterValue;
-		updateWater ();
-	}
-	void updateWater ()
-	{
-		waterText.text = "Water: " + water.ToString ("0");
-	}
-
-	public void addOxygen (float newOxygenValue)
-	{
-		oxygen += newOxygenValue;
-		updateOxygen ();
+		*/
 	}
 	
-	void updateOxygen ()
-	{
-		oxygenText.text = "Oxygen: " + oxygen.ToString ("0");
+	//these statements are all called by other functions to update the values held in the controller
+	public void addResource(ResourceType res, float value) {
+		resourcePool[res] += value;
+		if (resourcePool[res] < 0) {
+			resourcePool[res] = 0;
+		}
+		updateResource(res);
 	}
 
-	public void addFood (float newFoodValue)
-	{
-		food += newFoodValue;
-		updateFood ();
+	public void updateResource(ResourceType res) {
+		resourceTexts[res].text = res.ToString() + ": " + resourcePool[res].ToString("0");
 	}
-	void updateFood ()
-	{
-		foodText.text = "Food: " + food.ToString ("0");
-	}
-
-	public void addPopulation (float newPopulationValue)
-	{
-		population += newPopulationValue;
-		updatePopulation ();
-	}
-	void updatePopulation ()
-	{
-		populationText.text = "Population: " + population.ToString ("0");
-	}
-
-	public void addMaterials (float newMaterialsValue)
-	{
-		materials += newMaterialsValue;
-		updateMaterials ();
-	}
-	void updateMaterials ()
-	{
-		materialsText.text = "Materials: " + materials.ToString ("0");
-	}
-
 }

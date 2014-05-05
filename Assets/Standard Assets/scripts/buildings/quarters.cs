@@ -6,8 +6,8 @@ public class quarters : abstractBuilding {
 	public float population = -.1f;
 
 	public quarters(){
-		oxygen = -.005f;
-		water = -.005f;
-		food = -.005f;
+		ResourcePerUpdate[ResourceType.Oxygen] = -.005f;
+		ResourcePerUpdate[ResourceType.Water] = -.005f;
+		ResourcePerUpdate[ResourceType.Food] = -.005f;
 	}
 }

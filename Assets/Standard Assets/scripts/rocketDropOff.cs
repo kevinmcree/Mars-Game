@@ -28,12 +28,14 @@ public class rocketDropOff : MonoBehaviour {
 	}
 
 	void dropOff(){
+		/*
 		gameController.addPower(power);
 		gameController.addWater(water);
 		gameController.addOxygen(oxygen);
 		gameController.addFood(food);
 		gameController.addPopulation(population);
 		gameController.addMaterials(materials);
+		*/
 	}
 
 }

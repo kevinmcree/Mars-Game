@@ -6,9 +6,9 @@ public class greenHouse : abstractBuilding {
 	public float manpower = 0;
 
 	public greenHouse(){
-		power = -.005f;
-		water = -.005f;
-		oxygen = .005f;
-		food = .01f;
+		ResourcePerUpdate[ResourceType.Power] = .005f;
+		ResourcePerUpdate[ResourceType.Water] = .005f;
+		ResourcePerUpdate[ResourceType.Oxygen] = .005f;
+		ResourcePerUpdate[ResourceType.Food] = .01f;
 	}
 }

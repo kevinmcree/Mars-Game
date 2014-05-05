@@ -1,22 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /*
  * Base Building to inherit from. Adds no resources if somehow instantiated.
  */
 public class abstractBuilding : MonoBehaviour {
 
-	public float power = 0; //Units of Power produced per update
-	public float water = 0; //Units of Water produced per update
-	public float oxygen = 0; //Units of Oxygen produced per update
-	public float food = 0; //Units of Food produced per update
-	public float materials = 0; //Units of Building Materials produced per update
+	protected Dictionary<ResourceType, float> ResourcePerUpdate = new Dictionary<ResourceType, float>();
 
 	public float materialsToBuild = 0; //Units of Materials required/consumed to build
 	public float manHours = 0; //Man hours needed to construct the building
-	public float oxygenVolume = 0; //Units of Oxygen needed to fill a building when initially constructed or if a leak occurs
+	public float maxOxygenVolume = 0; //Units of Oxygen needed to fill a building when initially constructed or if a leak occurs
+	public float currentOxygenVolume = 0;
 
-	private gameManager gameController;
+	protected gameManager gameController;
 
 	//Determines if building is actively producing resources
 	public bool isActive = true;
@@ -31,11 +29,9 @@ public class abstractBuilding : MonoBehaviour {
 	protected virtual void Update() {
 		//BEGIN add resources to pool if active
 		if (isActive) {
-			gameController.addPower(power);
-			gameController.addWater(water);
-			gameController.addOxygen(oxygen);
-			gameController.addFood(food);
-			gameController.addMaterials(materials);
+			foreach(KeyValuePair<ResourceType, float> ent in ResourcePerUpdate){
+				gameController.addResource(ent.Key, ent.Value);
+			}
 		}
 		//END add resources to pool if active
 	}

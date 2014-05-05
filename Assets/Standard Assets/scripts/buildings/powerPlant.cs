@@ -3,6 +3,6 @@ using System.Collections;
 
 public class powerPlant : abstractBuilding {	
 	public powerPlant(){
-		power = .01f;
+		ResourcePerUpdate[ResourceType.Power] = .01f;
 	}
 }

@@ -24,20 +24,16 @@ public class builldingButton : MonoBehaviour {
 	}
 
 	void OnMouseUp(){
-		if (/*gameController.power>=power &&
-		    gameController.water>=water &&
-		    gameController.oxygen>=oxygen &&
-		    gameController.food>=food &&
-		    gameController.population>=population &&*/
-		    gameController.materials>=materials && gameController.materials > 0){
+		if (gameController.resourcePool[ResourceType.Materials]>=materials){
 			Instantiate (building, this.transform.position, new Quaternion (0, 0, 0, 0));
+			/*
 			gameController.addPower(power);
 			gameController.addWater(water);
 			gameController.addOxygen(oxygen);
 			gameController.addFood(food);
 			gameController.addPopulation(population);
 			gameController.addMaterials(materials);
-
+			*/
 
 
 		}
