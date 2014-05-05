@@ -19,7 +19,6 @@ public class quarters : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		gameController.addPopulation(population);
 		gameController.addFood(food);
 		gameController.addOxygen(oxygen);
 		gameController.addWater(water);

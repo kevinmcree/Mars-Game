@@ -7,6 +7,7 @@ public class gameManager : MonoBehaviour {
 	public float oxygen;
 	public float food;
 	public float population;
+	public float deathRate;
 	public float materials;
 
 	public GUIText powerText;
@@ -15,6 +16,9 @@ public class gameManager : MonoBehaviour {
 	public GUIText foodText;
 	public GUIText populationText;
 	public GUIText materialsText;
+	public GUIText greenHouseText;
+	public GUIText powerPlantText;
+	public GUIText quartersText;
 
 
 	// Use this for initialization
@@ -25,11 +29,23 @@ public class gameManager : MonoBehaviour {
 		updateFood ();
 		updatePopulation ();
 		updateMaterials ();
+		greenHouseText.text = "Greenhouse";
+		powerPlantText.text = "Powerplant";
+		quartersText.text = "Quarters";
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(water < 0){ water = 0;}
+		if(power < 0){ power = 0;}
+		if(oxygen < 0){ oxygen = 0;}
+		if(food < 0){ food = 0;}
+		if(population < 0){ population = 0;}
+		if(materials < 0){ materials = 0;}
+		if(water == 0 || food == 0 || oxygen == 0){
+			population += deathRate;
+			updatePopulation();
+		}
 	}
 
 
