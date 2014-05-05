@@ -11,13 +11,4 @@ public class greenHouse : abstractBuilding {
 		oxygen = .005f;
 		food = .01f;
 	}
-	
-	// Use this for initialization
-	void Start () {
-	}
-	
-	
-	// Update is called once per frame
-	void Update () {
-	}
 }
