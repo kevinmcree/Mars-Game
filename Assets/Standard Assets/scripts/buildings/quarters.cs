@@ -1,28 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class quarters : MonoBehaviour {
+public class quarters : abstractBuilding {
 
-	public float oxygen;
-	public float water;
-	public float food;
-	public float population;
-	public float materials;
-	private gameManager gameController;
-	
+	public float population = -.1f;
+
+	public quarters(){
+		oxygen = -.005f;
+		water = -.005f;
+		food = -.005f;
+
+	}
+
 	// Use this for initialization
 	void Start () {
-		GameObject gameControllerObject = GameObject.Find ("gameManager");
-		gameController = gameControllerObject.GetComponent <gameManager>();
+
 	}
 	
 	
 	// Update is called once per frame
 	void Update () {
-		gameController.addFood(food);
-		gameController.addOxygen(oxygen);
-		gameController.addWater(water);
-		gameController.addMaterials(materials);
 		
 	}
 }
