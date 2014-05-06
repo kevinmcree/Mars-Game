@@ -6,6 +6,8 @@ public class lifeSupport : abstractBuilding {
 	public lifeSupport(){
 		ResourcePerUpdate[ResourceType.Power] = -.02f;
 		ResourcePerUpdate[ResourceType.Oxygen] = .02f;
+
+		ResourceToBuild [ResourceType.Materials] = 100;
 	}
 
 	override protected void Update(){

@@ -9,5 +9,7 @@ public class quarters : abstractBuilding {
 		ResourcePerUpdate[ResourceType.Oxygen] = -.005f;
 		ResourcePerUpdate[ResourceType.Water] = -.005f;
 		ResourcePerUpdate[ResourceType.Food] = -.005f;
+
+		ResourceToBuild [ResourceType.Materials] = 100;
 	}
 }

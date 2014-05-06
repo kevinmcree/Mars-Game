@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class buildingPlacer : MonoBehaviour {
-	public GameObject building;
+	//public GameObject building;
 	
 	// Use this for initialization
 	void Start () {
@@ -18,7 +18,7 @@ public class buildingPlacer : MonoBehaviour {
 	}
 	
 	void OnMouseUp(){
-		Instantiate (building, this.transform.position, new Quaternion (0, 0, 0, 0));
+		//Instantiate (this, this.transform.position, new Quaternion (0, 0, 0, 0));
 		Destroy (this);
 	}
 }

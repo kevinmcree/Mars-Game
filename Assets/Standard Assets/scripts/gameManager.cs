@@ -68,4 +68,14 @@ public class gameManager : MonoBehaviour {
 	public void updateResource(ResourceType res) {
 		resourceTexts[res].text = res.ToString() + ": " + resourcePool[res].ToString("0");
 	}
+
+	public bool ableToBuild(abstractBuilding ab){
+		foreach (KeyValuePair<ResourceType, float> res in ab.RequiredResources()) {
+			if (res.Value > resourcePool[res.Key]){
+				return false;
+			}
+		}
+		return true;
+	}
+
 }

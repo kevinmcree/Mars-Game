@@ -10,5 +10,7 @@ public class greenHouse : abstractBuilding {
 		ResourcePerUpdate[ResourceType.Water] = .005f;
 		ResourcePerUpdate[ResourceType.Oxygen] = .005f;
 		ResourcePerUpdate[ResourceType.Food] = .01f;
+
+		ResourceToBuild[ResourceType.Materials] = 50;
 	}
 }

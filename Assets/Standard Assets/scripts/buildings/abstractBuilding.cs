@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,8 +8,8 @@ using System.Collections.Generic;
 public class abstractBuilding : MonoBehaviour {
 
 	protected Dictionary<ResourceType, float> ResourcePerUpdate = new Dictionary<ResourceType, float>();
+	protected Dictionary<ResourceType, float> ResourceToBuild = new Dictionary<ResourceType, float>();
 
-	public float materialsToBuild = 0; //Units of Materials required/consumed to build
 	public float manHours = 0; //Man hours needed to construct the building
 	public float maxOxygenVolume = 0; //Units of Oxygen needed to fill a building when initially constructed or if a leak occurs
 	public float currentOxygenVolume = 0;
@@ -34,5 +34,9 @@ public class abstractBuilding : MonoBehaviour {
 			}
 		}
 		//END add resources to pool if active
+	}
+
+	public Dictionary<ResourceType, float> RequiredResources(){
+		return ResourceToBuild;
 	}
 }
