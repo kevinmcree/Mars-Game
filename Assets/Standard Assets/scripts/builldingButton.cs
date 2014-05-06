@@ -17,7 +17,7 @@ public class builldingButton : MonoBehaviour {
 	public float population{ get { return ResourcesConsumed[ResourceType.Population]; } set { ResourcesConsumed[ResourceType.Population] = value; } }
 
 	public float materials{ get { return ResourcesConsumed[ResourceType.Materials]; } set { ResourcesConsumed[ResourceType.Materials] = value; } }
-	
+
 	public GameObject building;
 	private gameManager gameController;
 
