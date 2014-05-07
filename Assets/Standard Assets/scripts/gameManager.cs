@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour {
 		resourcePool[ResourceType.Power] = 200;
 		resourcePool[ResourceType.Water] = 200;
 
+
 		resourceTexts[ResourceType.Food] = foodText;
 		resourceTexts[ResourceType.Materials] = materialsText;
 		resourceTexts[ResourceType.Oxygen] = oxygenText;

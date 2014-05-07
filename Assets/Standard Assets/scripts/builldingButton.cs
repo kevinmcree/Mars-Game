@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class builldingButton : MonoBehaviour {
 
+<<<<<<< HEAD
+=======
+>>>>>>> c969f40a4fb0546167fd11841fd967b8f40ea91b
 	public GameObject building;
 	private gameManager gameController;
 
