@@ -19,7 +19,8 @@ public class builldingButton : MonoBehaviour {
 	}
 
 	void OnMouseUp() {
-		if (gameController.ableToBuild(building.GetComponent<abstractBuilding>())) {
+		if (!gameController.mouseHolding && gameController.ableToBuild(building.GetComponent<abstractBuilding>())) {
+			gameController.mouseHolding = true;
 			GameObject obj = (GameObject) Instantiate(building, this.transform.position, new Quaternion(0, 0, 0, 0));
 			obj.AddComponent<buildingPlacer>();
 			foreach (KeyValuePair<ResourceType, float> ent in building.GetComponent<abstractBuilding>().RequiredResources()) {

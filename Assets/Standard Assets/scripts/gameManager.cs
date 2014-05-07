@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class gameManager : MonoBehaviour {
 
+	public bool mouseHolding = false;
+
 	public Dictionary<ResourceType, float> resourcePool = new Dictionary<ResourceType, float>();
 	Dictionary<ResourceType, GUIText> resourceTexts = new Dictionary<ResourceType, GUIText>();
 	

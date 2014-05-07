@@ -7,7 +7,6 @@ public class buildingPlacer : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -22,7 +21,7 @@ public class buildingPlacer : MonoBehaviour {
 	
 	void OnMouseUp(){
 		//Instantiate (this, this.transform.position, new Quaternion (0, 0, 0, 0));
-
+		GameObject.Find ("gameManager").GetComponent<gameManager> ().mouseHolding = false;
 		Destroy (this);
 	}
 }
