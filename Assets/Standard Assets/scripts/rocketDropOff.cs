@@ -11,15 +11,16 @@ public class rocketDropOff : MonoBehaviour {
 	
 	public GameObject building;
 	private gameManager gameController;
+	//private Random random = new Random();
 	
 	// Use this for initialization
 	void Start () {
-		ResourcesPerDrop[ResourceType.Power] = 100;
-		ResourcesPerDrop[ResourceType.Water] = 100;
-		ResourcesPerDrop[ResourceType.Oxygen] = 100;
-		ResourcesPerDrop[ResourceType.Food] = 100;
-		ResourcesPerDrop[ResourceType.Population] = 1;
-		ResourcesPerDrop[ResourceType.Materials] = 100;
+		ResourcesPerDrop[ResourceType.Power] = Random.Range(50, 100);
+		ResourcesPerDrop[ResourceType.Water] = Random.Range(0, 50);
+		ResourcesPerDrop[ResourceType.Oxygen] = Random.Range(50, 100);
+		ResourcesPerDrop[ResourceType.Food] = Random.Range(50, 100);
+		ResourcesPerDrop[ResourceType.Population] = Random.Range(1, 10);
+		ResourcesPerDrop[ResourceType.Materials] = Random.Range(50, 100);
 
 		GameObject gameControllerObject = GameObject.Find ("gameManager");
 		gameController = gameControllerObject.GetComponent <gameManager>();
