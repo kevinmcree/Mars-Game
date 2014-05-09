@@ -6,5 +6,6 @@ public class powerPlant : abstractBuilding {
 		ResourcePerUpdate[ResourceType.Power] = .01f;
 
 		ResourceToBuild [ResourceType.Materials] = 50;
+		ResourceToBuild[ResourceType.Oxygen] = 25;
 	}
 }
