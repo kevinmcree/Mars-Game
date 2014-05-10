@@ -54,12 +54,11 @@ public class gameManager : MonoBehaviour {
 		addResource(ResourceType.Water, -.004f*resourcePool[ResourceType.Population]);
 		addResource(ResourceType.Oxygen, -.004f*resourcePool[ResourceType.Population]);
 
-		/*
-		if(water == 0 || food == 0 || oxygen == 0){
-			population += deathRate;
-			updatePopulation();
+
+		if(resourcePool[ResourceType.Water] == 0 || resourcePool[ResourceType.Food] == 0 || resourcePool[ResourceType.Oxygen] == 0){
+			addResource(ResourceType.Population, deathRate);
 		}
-		*/
+
 	}
 	
 	//these statements are all called by other functions to update the values held in the controller
