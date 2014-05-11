@@ -9,6 +9,10 @@ public class buildingMenu : MonoBehaviour {
 	public GameObject gh;
 	public GameObject q;
 	public GameObject wm;
+	public Texture2D ppSprite;
+	public Texture2D ghSprite;
+	public Texture2D qSprite;
+	public Texture2D wmSprite;
 	private gameManager gameController;
 	
 	// Use this for initialization
@@ -30,23 +34,23 @@ public class buildingMenu : MonoBehaviour {
 	
 	void OnGUI () {
 		// Make a background box
-		GUI.Box(new Rect(10,100,100,150), "Building Menu");
+		GUI.Box(new Rect(10,100,140,250), "Building Menu");
 		
-		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button(new Rect(20,130,80,20), "Powerplant")) {
+		// Make the first button.
+		if(GUI.Button(new Rect(20,130,120,40), new GUIContent("Powerplant", ppSprite))) {
 			buttonClicked(pp);
 		}
 		
 		// Make the second button.
-		if(GUI.Button(new Rect(20,160,80,20), "Greenhouse")) {
+		if(GUI.Button(new Rect(20,180,120,40), new GUIContent("Greenhouse", ghSprite))) {
 			buttonClicked(gh);
 		}
 		
-		if(GUI.Button(new Rect(20,190,80,20), "Quarters")) {
+		if(GUI.Button(new Rect(20,230,120,40), new GUIContent("Quarters", qSprite))) {
 			buttonClicked(q);
 		}
 
-		if(GUI.Button(new Rect(20,220,80,20), "Water Mine")) {
+		if(GUI.Button(new Rect(20,280,120,40), new GUIContent("Water Mine", wmSprite))) {
 			buttonClicked(wm);
 		}
 	}

@@ -17,9 +17,6 @@ public class gameManager : MonoBehaviour {
 	public GUIText foodText;
 	public GUIText populationText;
 	public GUIText materialsText;
-	public GUIText greenHouseText;
-	public GUIText powerPlantText;
-	public GUIText quartersText;
 
 
 	// Use this for initialization
@@ -42,10 +39,6 @@ public class gameManager : MonoBehaviour {
 		foreach (ResourceType type in (ResourceType[])Enum.GetValues(typeof(ResourceType))) {
 			updateResource(type);
 		}
-
-		greenHouseText.text = "Greenhouse";
-		powerPlantText.text = "Powerplant";
-		quartersText.text = "Quarters";
 	}
 	
 	// Update is called once per frame
