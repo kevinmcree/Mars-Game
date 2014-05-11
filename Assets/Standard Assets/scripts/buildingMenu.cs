@@ -26,12 +26,12 @@ public class buildingMenu : MonoBehaviour {
 	void buttonClicked(GameObject obj){
 		if (!gameController.mouseHolding && gameController.ableToBuild(obj.GetComponent<abstractBuilding>())) {
 			gameController.mouseHolding = true;
-			GameObject building = (GameObject) Instantiate(obj, this.transform.position, new Quaternion(0, 0, 0, 0));
-			obj.AddComponent<buildingPlacer>();
+			Instantiate(obj, Camera.main.ScreenToWorldPoint(Input.mousePosition), new Quaternion(0, 0, 0, 0));
 			foreach (KeyValuePair<ResourceType, float> ent in obj.GetComponent<abstractBuilding>().RequiredResources()) {
 				gameController.addResource(ent.Key, -ent.Value);
 			}
 		}
+
 	}
 	
 	void OnGUI () {
