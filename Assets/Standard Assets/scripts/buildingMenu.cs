@@ -26,7 +26,8 @@ public class buildingMenu : MonoBehaviour {
 	void buttonClicked(GameObject obj){
 		if (!gameController.mouseHolding && gameController.ableToBuild(obj.GetComponent<abstractBuilding>())) {
 			gameController.mouseHolding = true;
-			Instantiate(obj, Camera.main.ScreenToWorldPoint(Input.mousePosition), new Quaternion(0, 0, 0, 0));
+			GameObject bd = (GameObject) Instantiate(obj, Camera.main.ScreenToWorldPoint(Input.mousePosition), new Quaternion(0, 0, 0, 0));
+			bd.transform.eulerAngles = new Vector3(0,180,0);
 			foreach (KeyValuePair<ResourceType, float> ent in obj.GetComponent<abstractBuilding>().RequiredResources()) {
 				gameController.addResource(ent.Key, -ent.Value);
 			}
