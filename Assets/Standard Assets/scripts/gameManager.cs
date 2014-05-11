@@ -21,6 +21,7 @@ public class gameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
+		Time.timeScale = 1;
 		resourcePool[ResourceType.Food] = 200;
 		resourcePool[ResourceType.Materials] = 200;
 		resourcePool[ResourceType.Oxygen] = 200;
@@ -52,6 +53,19 @@ public class gameManager : MonoBehaviour {
 			addResource(ResourceType.Population, deathRate);
 		}
 
+	}
+
+	void OnGUI () {
+		if (ResourceType.Population == 0) {
+			Time.timeScale = 0;
+			GUI.Box(new Rect(500,100,140,300), "Your Population Hit 0!");
+			if (GUI.Button(new Rect(510, 130, 100, 40), "Start Over")){
+				Application.LoadLevel("main game");
+			}
+			if (GUI.Button(new Rect(530, 130, 100, 40), "Continue")){
+				Time.timeScale =1;
+			}
+		}
 	}
 	
 	//these statements are all called by other functions to update the values held in the controller
