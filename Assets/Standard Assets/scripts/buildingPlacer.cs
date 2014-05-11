@@ -11,11 +11,10 @@ public class buildingPlacer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-		Vector3 pos_move = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
+		Vector3 pos_move = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		transform.position = new Vector3(Mathf.Round(pos_move.x/gridSize)*gridSize,
 		                                 Mathf.Round(pos_move.y/gridSize)*gridSize,
-		                                 Mathf.Round(pos_move.z/gridSize)*gridSize);
+		                                 0);
 		
 	}
 	
