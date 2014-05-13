@@ -15,8 +15,11 @@ public class buildingMenu : MonoBehaviour {
 	public Texture2D qSprite;
 	public Texture2D wmSprite;
 	public Texture2D imSprite;
+	public Rect windowRect = new Rect(250,100,140,300);
+
 	private int menuWidth;
 	private int menuHeight;
+	private bool show = false;
 	private gameManager gameController;
 	
 	// Use this for initialization
@@ -25,6 +28,7 @@ public class buildingMenu : MonoBehaviour {
 		gameController = gameControllerObject.GetComponent <gameManager>();
 		menuWidth = 140;
 		menuHeight = 200;
+		Time.timeScale = 1;
 	}
 	
 	void buttonClicked(GameObject obj){
@@ -41,7 +45,7 @@ public class buildingMenu : MonoBehaviour {
 	
 	void OnGUI () {
 		// Make a background box
-		GUI.Box(new Rect(10,100,menuWidth,menuHeight), "Building Menu");
+		GUI.Box(new Rect(10, 100, menuWidth, menuHeight), "Building Menu");
 		
 		// Make the first button.
 		addButton (pp, ppSprite, "Powerplant", 20, 130, 120, 40);
@@ -60,6 +64,29 @@ public class buildingMenu : MonoBehaviour {
 			addButton (im, imSprite, "Iron Mine", 20, 330, 120, 40);
 		}
 
+		if (gameController.resourcePool[ResourceType.Population] < 1) {
+			show = true;
+			//windowRect = GUI.Window(0, windowRect, DoMyWindow, "Your Population Hit 0!");
+		}
+
+		if (show) {
+			Time.timeScale = 0;
+			windowRect = GUI.Window(0, windowRect, DoMyWindow, "Your Population Hit 0!");
+		}
+	}
+
+	void DoMyWindow(int windowID) {
+		if (GUI.Button(new Rect(10, 20, 100, 40), "Start Over")){
+			Application.LoadLevel("main game");
+		}
+		
+		/*if (GUI.Button(new Rect(10, 50, 100, 40), "Continue")){
+			closeWindow();
+		}*/
+	}
+
+	void closeWindow(){
+		show = false;
 	}
 
 	void addButton (GameObject obj, Texture2D sprite, string txt, int x, int y, int width, int height) {
