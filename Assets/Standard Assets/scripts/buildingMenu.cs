@@ -15,12 +15,16 @@ public class buildingMenu : MonoBehaviour {
 	public Texture2D qSprite;
 	public Texture2D wmSprite;
 	public Texture2D imSprite;
+	private int menuWidth;
+	private int menuHeight;
 	private gameManager gameController;
 	
 	// Use this for initialization
 	void Start() {
 		GameObject gameControllerObject = GameObject.Find("gameManager");
 		gameController = gameControllerObject.GetComponent <gameManager>();
+		menuWidth = 140;
+		menuHeight = 200;
 	}
 	
 	void buttonClicked(GameObject obj){
@@ -37,28 +41,30 @@ public class buildingMenu : MonoBehaviour {
 	
 	void OnGUI () {
 		// Make a background box
-		GUI.Box(new Rect(10,100,140,300), "Building Menu");
+		GUI.Box(new Rect(10,100,menuWidth,menuHeight), "Building Menu");
 		
 		// Make the first button.
-		if(GUI.Button(new Rect(20,130,120,40), new GUIContent("Powerplant", ppSprite))) {
-			buttonClicked(pp);
-		}
-		
-		// Make the second button.
-		if(GUI.Button(new Rect(20,180,120,40), new GUIContent("Greenhouse", ghSprite))) {
-			buttonClicked(gh);
-		}
-		
-		if(GUI.Button(new Rect(20,230,120,40), new GUIContent("Quarters", qSprite))) {
-			buttonClicked(q);
+		addButton (pp, ppSprite, "Powerplant", 20, 130, 120, 40);
+		addButton (gh, ghSprite, "Greenhouse", 20, 180, 120, 40);
+		addButton (q, qSprite, "Quarters", 20, 230, 120, 40);
+
+		if (gameController.resourcePool [ResourceType.Population] > 5) {
+			if (gameController.resourcePool[ResourceType.Population] < 10){
+				menuHeight = 250;
+			}
+			addButton (wm, wmSprite, "Water Mine", 20, 280, 120, 40);
 		}
 
-		if(GUI.Button(new Rect(20,280,120,40), new GUIContent("Water Mine", wmSprite))) {
-			buttonClicked(wm);
+		if (gameController.resourcePool [ResourceType.Population] > 10) {
+			menuHeight = 300;
+			addButton (im, imSprite, "Iron Mine", 20, 330, 120, 40);
 		}
 
-		if(GUI.Button(new Rect(20,330,120,40), new GUIContent("Iron Mine", imSprite))) {
-			buttonClicked(im);
+	}
+
+	void addButton (GameObject obj, Texture2D sprite, string txt, int x, int y, int width, int height) {
+		if(GUI.Button(new Rect(x, y, width, height), new GUIContent(txt, sprite))) {
+			buttonClicked(obj);
 		}
 	}
 }

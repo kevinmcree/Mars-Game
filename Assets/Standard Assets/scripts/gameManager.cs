@@ -17,7 +17,7 @@ public class gameManager : MonoBehaviour {
 	public GUIText foodText;
 	public GUIText populationText;
 	public GUIText materialsText;
-
+	public Rect windowRect = new Rect(250,100,140,300);
 
 	// Use this for initialization
 	void Start() {
@@ -55,18 +55,29 @@ public class gameManager : MonoBehaviour {
 
 	}
 
-	void OnGUI () {
-		if (ResourceType.Population == 0) {
+	/*void OnGUI () {
+		if (resourcePool[ResourceType.Population] < 1) {
 			Time.timeScale = 0;
+			windowRect = GUI.Window(0, windowRect, DoMyWindow, "Your Population Hit 0!");
 			GUI.Box(new Rect(500,100,140,300), "Your Population Hit 0!");
-			if (GUI.Button(new Rect(510, 130, 100, 40), "Start Over")){
+			if (GUI.Button(new Rect(260, 130, 100, 40), "Start Over")){
 				Application.LoadLevel("main game");
 			}
-			if (GUI.Button(new Rect(530, 130, 100, 40), "Continue")){
+			if (GUI.Button(new Rect(280, 130, 100, 40), "Continue")){
 				Time.timeScale =1;
 			}
 		}
 	}
+
+	void DoMyWindow(int windowID) {
+		if (GUI.Button(new Rect(260, 130, 100, 40), "Start Over")){
+			Application.LoadLevel("main game");
+		}
+
+		if (GUI.Button(new Rect(280, 130, 100, 40), "Continue")){
+			Time.timeScale =1;
+		}
+	}*/
 	
 	//these statements are all called by other functions to update the values held in the controller
 	public void addResource(ResourceType res, float value) {
