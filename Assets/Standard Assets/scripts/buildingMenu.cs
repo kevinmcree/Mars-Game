@@ -15,7 +15,7 @@ public class buildingMenu : MonoBehaviour {
 	public Texture2D qSprite;
 	public Texture2D wmSprite;
 	public Texture2D imSprite;
-	public Rect windowRect = new Rect(250,100,140,300);
+	public Rect windowR = new Rect(500,100,150,150);
 
 	private int menuWidth;
 	private int menuHeight;
@@ -46,8 +46,7 @@ public class buildingMenu : MonoBehaviour {
 	void OnGUI () {
 		// Make a background box
 		GUI.Box(new Rect(10, 100, menuWidth, menuHeight), "Building Menu");
-		
-		// Make the first button.
+
 		addButton (pp, ppSprite, "Powerplant", 20, 130, 120, 40);
 		addButton (gh, ghSprite, "Greenhouse", 20, 180, 120, 40);
 		addButton (q, qSprite, "Quarters", 20, 230, 120, 40);
@@ -71,12 +70,12 @@ public class buildingMenu : MonoBehaviour {
 
 		if (show) {
 			Time.timeScale = 0;
-			windowRect = GUI.Window(0, windowRect, DoMyWindow, "Your Population Hit 0!");
+			windowR = GUI.Window(0, windowR, DoMyWindow, "Your Population Hit 0!");
 		}
 	}
 
 	void DoMyWindow(int windowID) {
-		if (GUI.Button(new Rect(10, 20, 100, 40), "Start Over")){
+		if (GUI.Button(new Rect(25, 50, 100, 40), "Start Over")){
 			Application.LoadLevel("main game");
 		}
 		

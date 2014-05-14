@@ -17,7 +17,7 @@ public class gameManager : MonoBehaviour {
 	public GUIText foodText;
 	public GUIText populationText;
 	public GUIText materialsText;
-	public Rect windowRect = new Rect(250,100,140,300);
+	//public Rect windowRect = new Rect(250,100,140,300);
 
 	// Use this for initialization
 	void Start() {
