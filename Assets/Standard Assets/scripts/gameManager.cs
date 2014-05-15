@@ -19,9 +19,12 @@ public class gameManager : MonoBehaviour {
 	public GUIText materialsText;
 	//public Rect windowRect = new Rect(250,100,140,300);
 
+	private int maxPopulation;
+
 	// Use this for initialization
 	void Start() {
 		Time.timeScale = 1;
+		maxPopulation = 20;
 		resourcePool[ResourceType.Food] = 200;
 		resourcePool[ResourceType.Materials] = 200;
 		resourcePool[ResourceType.Oxygen] = 200;
@@ -44,7 +47,7 @@ public class gameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		addResource(ResourceType.Food, -.01f*resourcePool[ResourceType.Population]);
+		addResource(ResourceType.Food, -.005f*resourcePool[ResourceType.Population]);
 		addResource(ResourceType.Water, -.004f*resourcePool[ResourceType.Population]);
 		addResource(ResourceType.Oxygen, -.004f*resourcePool[ResourceType.Population]);
 

@@ -51,14 +51,14 @@ public class buildingMenu : MonoBehaviour {
 		addButton (gh, ghSprite, "Greenhouse", 20, 180, 120, 40);
 		addButton (q, qSprite, "Quarters", 20, 230, 120, 40);
 
-		if (gameController.resourcePool [ResourceType.Population] > 5) {
+		if (gameController.resourcePool [ResourceType.Population] > 20) {
 			if (gameController.resourcePool[ResourceType.Population] < 10){
 				menuHeight = 250;
 			}
 			addButton (wm, wmSprite, "Water Mine", 20, 280, 120, 40);
 		}
 
-		if (gameController.resourcePool [ResourceType.Population] > 10) {
+		if (gameController.resourcePool [ResourceType.Population] > 50) {
 			menuHeight = 300;
 			addButton (im, imSprite, "Iron Mine", 20, 330, 120, 40);
 		}
