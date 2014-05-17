@@ -21,6 +21,7 @@ public class buildingPlacer : MonoBehaviour {
 	void OnMouseUp(){
 		//Instantiate (this, this.transform.position, new Quaternion (0, 0, 0, 0));
 		GameObject.Find ("gameManager").GetComponent<gameManager> ().mouseHolding = false;
+		gameObject.GetComponent<abstractBuilding> ().beginBuild ();
 		Destroy (this);
 	}
 }

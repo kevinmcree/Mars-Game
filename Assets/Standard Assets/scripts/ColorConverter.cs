@@ -3,7 +3,14 @@ using System.Collections;
 
 public class ColorConverter{
 	
-
+	/*
+	 * Converts from HSVA to RGBA
+	 * 
+	 * hsva - the HSVA color to convert
+	 * 
+	 * I have no idea what happens if you pass in an RGBA color.
+	 * So don't try it...
+	 */
 	public static Color HSVAtoRGBA(Color hsva){
 		return HSVAtoRGBA(hsva.r, hsva.g, hsva.b, hsva.a);
 	}
@@ -62,6 +69,17 @@ public class ColorConverter{
 		return ret;
 	}
 
+	/* Converts from RGBA to HSVA
+	 * 
+	 * col - The RGBA color to convert
+	 * 
+	 * Returned Color stores
+	 * H in Color.r
+	 * S in Color.g
+	 * V in Color.B
+	 * 
+	 * I should really have made a wrapper for that
+	 */
 	public static Color RGBAtoHSVA(Color col){
 		Color retVal = new Color();
 		retVal.a = col.a;

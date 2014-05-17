@@ -11,52 +11,26 @@ public class disasterController : MonoBehaviour {
 	
 	public GameObject building;
 	private gameManager gameController;
-	//private Random random = new Random();
 	
 	// Use this for initialization
 	void Start () {
-		/*ResourceDepleted[ResourceType.Power] = 0;
-		ResourceDepleted[ResourceType.Water] = 0;
-		ResourceDepleted[ResourceType.Oxygen] = 0;
-		ResourceDepleted[ResourceType.Food] = 0;
-		ResourceDepleted[ResourceType.Population] = 0;
-		ResourceDepleted[ResourceType.Materials] = 0;
-
-		if(gameController.resourcePool[ResourceType.Population] > 1000){
-			dis = Random.Range(1, 4);
-
-			if(dis == 1){// Water Contamination/Drought causes loss of water
-				gameController.addResource(ResourceType.Water, -((5*gameController.resourcePool[ResourceType.Water])/100));
-			}else if(dis == 2){// Meteor/Asteroid collision causes loss of oxygen
-				gameController.addResource(ResourceType.Oxygen, -((3*gameController.resourcePool[ResourceType.Oxygen])/100));
-			}else if(dis == 3){// Blackout
-				gameController.addResource(ResourceType.Power, -((5*gameController.resourcePool[ResourceType.Power])/100));
-			}else{//Famine
-				gameController.addResource(ResourceType.Food, -((5*gameController.resourcePool[ResourceType.Food])/100));
-			}
-		}*/
 
 		GameObject gameControllerObject = GameObject.Find ("gameManager");
 		gameController = gameControllerObject.GetComponent <gameManager>();
 		InvokeRepeating ("disaster", delay, dropRate);
 		
 	}
-	
+
+	//Disaster now emptys a random storage building. Can be modified to strike multiple buildings
 	void disaster(){
-		int dis = Random.Range (1, 4);
-		if(gameController.resourcePool[ResourceType.Population] > 1000){
-			dis = Random.Range(1, 4);
-			
-			if(dis == 1){// Water Contamination/Drought causes loss of water
-				gameController.addResource(ResourceType.Water, -((5*gameController.resourcePool[ResourceType.Water])/100));
-			}else if(dis == 2){// Meteor/Asteroid collision causes loss of oxygen
-				gameController.addResource(ResourceType.Oxygen, -((3*gameController.resourcePool[ResourceType.Oxygen])/100));
-			}else if(dis == 3){// Blackout
-				gameController.addResource(ResourceType.Power, -((5*gameController.resourcePool[ResourceType.Power])/100));
-			}else{//Famine
-				gameController.addResource(ResourceType.Food, -((5*gameController.resourcePool[ResourceType.Food])/100));
+		if(gameController.getCurrentResource(ResourceType.Population) > 1000){
+			storageBuilding[] objs = (storageBuilding[]) GameObject.FindObjectsOfType(typeof(storageBuilding));
+			storageBuilding target = objs[Random.Range(0,objs.Length)];
+			foreach(KeyValuePair<ResourceType, float> ent in target.ResourceInStorage){
+				target.ResourceInStorage[ent.Key] = 0;
 			}
 		}
 	}
+
 	
 }

@@ -38,9 +38,6 @@ public class buildingMenu : MonoBehaviour {
 			gameController.mouseHolding = true;
 			GameObject bd = (GameObject) Instantiate(obj, Camera.main.ScreenToWorldPoint(Input.mousePosition), new Quaternion(0, 0, 0, 0));
 			bd.transform.eulerAngles = new Vector3(0,180,0);
-			foreach (KeyValuePair<ResourceType, float> ent in obj.GetComponent<abstractBuilding>().RequiredResources()) {
-				gameController.addResource(ent.Key, -ent.Value);
-			}
 		}
 
 	}
@@ -53,7 +50,7 @@ public class buildingMenu : MonoBehaviour {
 		addButton (gh, ghSprite, "Greenhouse", 180);
 		addButton (q, qSprite, "Quarters", 230);
 
-		if (gameController.resourcePool [ResourceType.Population] > 10) {
+		if (gameController.getCurrentResource(ResourceType.Population) > 10) {
 			unlockWM = true;
 			/*if (gameController.resourcePool[ResourceType.Population] < 10){
 				menuHeight = 250;
@@ -61,7 +58,7 @@ public class buildingMenu : MonoBehaviour {
 			addButton (wm, wmSprite, "Water Mine", 20, 280, 120, 40);*/
 		}
 
-		if (gameController.resourcePool [ResourceType.Population] > 20) {
+		if (gameController.getCurrentResource(ResourceType.Population) > 20) {
 			unlockIM = true;
 			/*menuHeight = 300;
 			addButton (im, imSprite, "Iron Mine", 20, 330, 120, 40);*/
@@ -76,7 +73,7 @@ public class buildingMenu : MonoBehaviour {
 			addButton (im, imSprite, "Iron Mine", 330);
 		}
 
-		if (gameController.resourcePool[ResourceType.Population] < 1) {
+		if (gameController.getCurrentResource(ResourceType.Population) < 1) {
 			show = true;
 			//windowRect = GUI.Window(0, windowRect, DoMyWindow, "Your Population Hit 0!");
 		}

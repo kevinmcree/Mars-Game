@@ -15,6 +15,10 @@ public class rocketDropOff : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		//ALERT
+		//This code currently makes the drops random, HOWEVER it's a single random
+		//value throught the entire play. Each drop will have the exact same resources
+		//ALERT
 		ResourcesPerDrop[ResourceType.Power] = Random.Range(0, 50);
 		ResourcesPerDrop[ResourceType.Water] = Random.Range(0, 50);
 		ResourcesPerDrop[ResourceType.Oxygen] = Random.Range(0, 50);
@@ -29,8 +33,10 @@ public class rocketDropOff : MonoBehaviour {
 	}
 
 	void dropOff(){
+		//Drops are made at the Core Base
+		CoreBase cBase = GameObject.Find("coreBase").GetComponent<CoreBase>();
 		foreach(KeyValuePair<ResourceType, float> ent in ResourcesPerDrop){
-			gameController.addResource(ent.Key, ent.Value);
+			cBase.addResource(ent.Key, ent.Value);
 		}
 	}
 
