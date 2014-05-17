@@ -54,7 +54,10 @@ public class gameManager : MonoBehaviour {
 		foreach (ResourceType type in (ResourceType[])Enum.GetValues(typeof(ResourceType))) {
 			updateResource(type);
 		}
-
+		GameObject go = GameObject.Find("menu");
+		if (go.GetComponent<buildingMenu>().show==true){
+			audio.Pause();
+		}
 	}
 
 	//Updates the Gui string for the passed resource type

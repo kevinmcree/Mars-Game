@@ -19,10 +19,11 @@ public class buildingMenu : MonoBehaviour {
 
 	private int menuWidth;
 	private int menuHeight;
-	private bool show = false;
+	public bool show = false;
 	private bool unlockWM = false;
 	private bool unlockIM = false;
 	private gameManager gameController;
+	bool toggle = true;
 	
 	// Use this for initialization
 	void Start() {
@@ -38,6 +39,7 @@ public class buildingMenu : MonoBehaviour {
 			gameController.mouseHolding = true;
 			GameObject bd = (GameObject) Instantiate(obj, Camera.main.ScreenToWorldPoint(Input.mousePosition), new Quaternion(0, 0, 0, 0));
 			bd.transform.eulerAngles = new Vector3(0,180,0);
+			//audio.Play(); 
 		}
 
 	}
@@ -73,7 +75,7 @@ public class buildingMenu : MonoBehaviour {
 			addButton (im, imSprite, "Iron Mine", 330);
 		}
 
-		if (gameController.getCurrentResource(ResourceType.Population) < 1) {
+		if (gameController.getCurrentResource(ResourceType.Population) < 0) {
 			show = true;
 			//windowRect = GUI.Window(0, windowRect, DoMyWindow, "Your Population Hit 0!");
 		}
@@ -82,6 +84,10 @@ public class buildingMenu : MonoBehaviour {
 		if (show) {
 			Time.timeScale = 0;
 			windowR = GUI.Window(0, windowR, DoMyWindow, "Your Population Hit 0!");
+			if (toggle){
+				audio.Play(); 
+				toggle = false;
+			}
 		}
 	}
 
