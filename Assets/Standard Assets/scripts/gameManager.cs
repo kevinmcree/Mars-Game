@@ -47,7 +47,7 @@ public class gameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		addResource(ResourceType.Food, -.005f*resourcePool[ResourceType.Population]);
+		addResource(ResourceType.Food, -.001f*resourcePool[ResourceType.Population]);
 		addResource(ResourceType.Water, -.004f*resourcePool[ResourceType.Population]);
 		addResource(ResourceType.Oxygen, -.004f*resourcePool[ResourceType.Population]);
 

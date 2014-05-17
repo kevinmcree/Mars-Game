@@ -20,6 +20,8 @@ public class buildingMenu : MonoBehaviour {
 	private int menuWidth;
 	private int menuHeight;
 	private bool show = false;
+	private bool unlockWM = false;
+	private bool unlockIM = false;
 	private gameManager gameController;
 	
 	// Use this for initialization
@@ -47,20 +49,31 @@ public class buildingMenu : MonoBehaviour {
 		// Make a background box
 		GUI.Box(new Rect(10, 100, menuWidth, menuHeight), "Building Menu");
 
-		addButton (pp, ppSprite, "Powerplant", 20, 130, 120, 40);
-		addButton (gh, ghSprite, "Greenhouse", 20, 180, 120, 40);
-		addButton (q, qSprite, "Quarters", 20, 230, 120, 40);
+		addButton (pp, ppSprite, "Powerplant", 130);
+		addButton (gh, ghSprite, "Greenhouse", 180);
+		addButton (q, qSprite, "Quarters", 230);
 
-		if (gameController.resourcePool [ResourceType.Population] > 20) {
-			if (gameController.resourcePool[ResourceType.Population] < 10){
+		if (gameController.resourcePool [ResourceType.Population] > 10) {
+			unlockWM = true;
+			/*if (gameController.resourcePool[ResourceType.Population] < 10){
 				menuHeight = 250;
 			}
-			addButton (wm, wmSprite, "Water Mine", 20, 280, 120, 40);
+			addButton (wm, wmSprite, "Water Mine", 20, 280, 120, 40);*/
 		}
 
-		if (gameController.resourcePool [ResourceType.Population] > 50) {
+		if (gameController.resourcePool [ResourceType.Population] > 20) {
+			unlockIM = true;
+			/*menuHeight = 300;
+			addButton (im, imSprite, "Iron Mine", 20, 330, 120, 40);*/
+		}
+
+		if (unlockWM && !unlockIM) {
+			menuHeight = 250;
+			addButton (wm, wmSprite, "Water Mine", 280);
+		} else if (unlockWM && unlockIM) {
 			menuHeight = 300;
-			addButton (im, imSprite, "Iron Mine", 20, 330, 120, 40);
+			addButton (wm, wmSprite, "Water Mine", 280);
+			addButton (im, imSprite, "Iron Mine", 330);
 		}
 
 		if (gameController.resourcePool[ResourceType.Population] < 1) {
@@ -68,6 +81,7 @@ public class buildingMenu : MonoBehaviour {
 			//windowRect = GUI.Window(0, windowRect, DoMyWindow, "Your Population Hit 0!");
 		}
 
+		// End game display
 		if (show) {
 			Time.timeScale = 0;
 			windowR = GUI.Window(0, windowR, DoMyWindow, "Your Population Hit 0!");
@@ -88,8 +102,8 @@ public class buildingMenu : MonoBehaviour {
 		show = false;
 	}
 
-	void addButton (GameObject obj, Texture2D sprite, string txt, int x, int y, int width, int height) {
-		if(GUI.Button(new Rect(x, y, width, height), new GUIContent(txt, sprite))) {
+	void addButton (GameObject obj, Texture2D sprite, string txt, int y) {
+		if(GUI.Button(new Rect(20, y, 120, 40), new GUIContent(txt, sprite))) {
 			buttonClicked(obj);
 		}
 	}
