@@ -188,7 +188,7 @@ public class abstractBuilding : MonoBehaviour
 		while(resourcePushed < ent.Value) {
 			//push a resource every .05 seconds
 			foreach(storageBuilding build in objs) {
-				if(build.getResourceStorage(ent.Key) < 1){continue;}
+				if(build.getResourceStorage(ent.Key) < 1 || !build.isActive || build.Equals(this)){continue;}
 				if(build.getResourceInStorage(ent.Key) > build.getResourceStorage(ent.Key)-1){
 					continue;}
 				build.addResource(ent.Key, 1);

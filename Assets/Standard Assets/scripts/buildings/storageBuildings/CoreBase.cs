@@ -23,6 +23,15 @@ public class CoreBase : storageBuilding {
 		addResource(ResourceType.Power, 200);
 		addResource(ResourceType.Water, 200);
 		addResource(ResourceType.Population, 5);
+
+		ResourcePerUpdate[ResourceType.Food] = 0;
+		ResourcePerUpdate[ResourceType.Materials] = 0;
+		ResourcePerUpdate[ResourceType.Oxygen] = 0;
+		ResourcePerUpdate[ResourceType.Population] = 0;
+		ResourcePerUpdate[ResourceType.Power] = 0;
+		ResourcePerUpdate[ResourceType.Water] = 0;
+
+
 	}
 
 	protected override void Update(){
