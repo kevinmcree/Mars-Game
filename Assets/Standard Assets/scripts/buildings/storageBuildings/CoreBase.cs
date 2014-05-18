@@ -27,9 +27,9 @@ public class CoreBase : storageBuilding {
 
 	protected override void Update(){
 		float pop = getResourceInStorage(ResourceType.Population);
-		ResourceRequiredPerUpdate[ResourceType.Oxygen] = .004f * pop;
-		ResourceRequiredPerUpdate[ResourceType.Water] = .004f * pop;
-		ResourceRequiredPerUpdate[ResourceType.Food] = .001f * pop;
+		ResourceRequiredPerUpdate [ResourceType.Oxygen] = .004f * pop;
+		ResourceRequiredPerUpdate [ResourceType.Water] = .004f * pop;
+		ResourceRequiredPerUpdate [ResourceType.Food] = .001f * pop;
 		base.Update();
 	}
 }

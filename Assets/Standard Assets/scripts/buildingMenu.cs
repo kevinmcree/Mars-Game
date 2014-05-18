@@ -16,9 +16,11 @@ public class buildingMenu : MonoBehaviour {
 	public Texture2D wmSprite;
 	public Texture2D imSprite;
 	public Rect windowR = new Rect(500,100,150,150);
+	public Rect window2 = new Rect(500,100,300,200);
 
 	private int menuWidth;
 	private int menuHeight;
+	private float winTime = 60;
 	public bool show = false;
 	private bool unlockWM = false;
 	private bool unlockIM = false;
@@ -54,16 +56,10 @@ public class buildingMenu : MonoBehaviour {
 
 		if (gameController.getCurrentResource(ResourceType.Population) > 10) {
 			unlockWM = true;
-			/*if (gameController.resourcePool[ResourceType.Population] < 10){
-				menuHeight = 250;
-			}
-			addButton (wm, wmSprite, "Water Mine", 20, 280, 120, 40);*/
 		}
 
 		if (gameController.getCurrentResource(ResourceType.Population) > 20) {
 			unlockIM = true;
-			/*menuHeight = 300;
-			addButton (im, imSprite, "Iron Mine", 20, 330, 120, 40);*/
 		}
 
 		if (unlockWM && !unlockIM) {
@@ -77,7 +73,6 @@ public class buildingMenu : MonoBehaviour {
 
 		if (gameController.getCurrentResource(ResourceType.Population) < 0) {
 			show = true;
-			//windowRect = GUI.Window(0, windowRect, DoMyWindow, "Your Population Hit 0!");
 		}
 
 		// End game display
@@ -89,20 +84,26 @@ public class buildingMenu : MonoBehaviour {
 				toggle = false;
 			}
 		}
+
+		if ((Time.time - gameController.timer) > winTime) {
+			window2 = GUI.Window(0, window2, DoMyWindow2, "Congratulations! Your colony is now sustainable!");
+		}
 	}
 
 	void DoMyWindow(int windowID) {
 		if (GUI.Button(new Rect(25, 50, 100, 40), "Start Over")){
 			Application.LoadLevel("main game");
 		}
-		
-		/*if (GUI.Button(new Rect(10, 50, 100, 40), "Continue")){
-			closeWindow();
-		}*/
 	}
 
-	void closeWindow(){
-		show = false;
+	void DoMyWindow2(int windowID) {
+		if (GUI.Button(new Rect(75, 50, 150, 40), "Start Over")){
+			Application.LoadLevel("main game");
+		}
+
+		if (GUI.Button(new Rect(75, 150, 150, 40), "Return to Main Menu")){
+			Application.LoadLevel("Start Screen");
+		}
 	}
 
 	void addButton (GameObject obj, Texture2D sprite, string txt, int y) {

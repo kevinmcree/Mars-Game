@@ -10,17 +10,26 @@ public class gameManager : MonoBehaviour {
 	Dictionary<ResourceType, GUIText> resourceTexts = new Dictionary<ResourceType, GUIText>();
 	
 	public float deathRate = -.01f;
+	public float timer;
 	public GUIText powerText;
 	public GUIText waterText;
 	public GUIText oxygenText;
 	public GUIText foodText;
 	public GUIText populationText;
 	public GUIText materialsText;
-	//public Rect windowRect = new Rect(250,100,140,300);
+	public bool sustainable;
+
+	private float powerPrev;
+	private float waterPrev;
+	private float oxygenPrev;
+	private float foodPrev;
+	private float populationPrev;
+	private float materialsPrev;
 
 	// Use this for initialization
 	void Start() {
 		Time.timeScale = 1;
+		sustainable = false;
 
 		resourceTexts[ResourceType.Food] = foodText;
 		resourceTexts[ResourceType.Materials] = materialsText;
@@ -32,6 +41,8 @@ public class gameManager : MonoBehaviour {
 		foreach (ResourceType type in (ResourceType[])Enum.GetValues(typeof(ResourceType))) {
 			updateResource(type);
 		}
+
+		updatePrev ();
 	}
 	
 	// Update is called once per frame
@@ -54,6 +65,12 @@ public class gameManager : MonoBehaviour {
 		foreach (ResourceType type in (ResourceType[])Enum.GetValues(typeof(ResourceType))) {
 			updateResource(type);
 		}
+
+		//Check for sustainability
+		checkSustainability ();
+
+		updatePrev ();
+
 		GameObject go = GameObject.Find("menu");
 		if (go.GetComponent<buildingMenu>().show==true){
 			audio.Pause();
@@ -105,6 +122,31 @@ public class gameManager : MonoBehaviour {
 		}
 		//if all resources are available, building can be built
 		return true;
+	}
+
+	public void updatePrev (){
+		powerPrev = getCurrentResource (ResourceType.Power);
+		waterPrev = getCurrentResource (ResourceType.Water);
+		oxygenPrev = getCurrentResource (ResourceType.Oxygen);
+		foodPrev = getCurrentResource (ResourceType.Food);
+		populationPrev = getCurrentResource (ResourceType.Population);
+		materialsPrev = getCurrentResource (ResourceType.Materials);
+	}
+
+	public void checkSustainability(){
+		if (getCurrentResource (ResourceType.Power) >= powerPrev &&
+			getCurrentResource (ResourceType.Water) >= waterPrev &&
+			getCurrentResource (ResourceType.Oxygen) >= oxygenPrev &&
+			getCurrentResource (ResourceType.Food) >= foodPrev &&
+			getCurrentResource (ResourceType.Population) >= populationPrev &&
+			getCurrentResource (ResourceType.Materials) >= materialsPrev) {
+			if(!sustainable){
+				timer = Time.time;
+			}
+			sustainable = true;
+		}else {
+			sustainable = false;
+		}
 	}
 
 }

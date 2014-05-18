@@ -6,8 +6,8 @@ public class disasterController : MonoBehaviour {
 	
 	Dictionary<ResourceType, float> ResourceDepleted = new Dictionary<ResourceType, float>();
 	
-	public float delay = 10; 
-	public float dropRate = 50; //how often drops happen in seconds
+	public float delay; 
+	public float dropRate; //how often drops happen in seconds
 	
 	public GameObject building;
 	private gameManager gameController;
@@ -23,7 +23,7 @@ public class disasterController : MonoBehaviour {
 
 	//Disaster now emptys a random storage building. Can be modified to strike multiple buildings
 	void disaster(){
-		if(gameController.getCurrentResource(ResourceType.Population) > 1000){
+		if(gameController.getCurrentResource(ResourceType.Population) > 500){
 			storageBuilding[] objs = (storageBuilding[]) GameObject.FindObjectsOfType(typeof(storageBuilding));
 			storageBuilding target = objs[Random.Range(0,objs.Length)];
 			foreach(KeyValuePair<ResourceType, float> ent in target.ResourceInStorage){
